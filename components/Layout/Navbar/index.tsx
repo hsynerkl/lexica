@@ -106,7 +106,6 @@ const Navbar = () => {
           </p>
         </li>
       </ul>
-
       <CustomButton text="Get started" />
     </nav>
   );

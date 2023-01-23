@@ -2,11 +2,16 @@ import Link from "next/link";
 import { useState } from "react";
 import CustomButton from "../common/CustomButton";
 
+const img = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 22, 222, 222, 43, 234, 324, 234, 234, 234, 23,
+  423, 423, 423, 423, 423, 423, 42, 34, 234, 23, 4234, 32, 423, 432, 423, 423,
+  523, 432, 423,
+];
 const HomeComponent = () => {
-  const [columns, setColumns] = useState(0);
+  const [columns, setColumns] = useState(12);
   return (
-    <section className="bg-black-200 text-white pt-14 flex justify-center">
-      <div className="container flex flex-col justify-center items-center">
+    <section className="min-h-screen bg-black-200 text-white pt-14 flex justify-center flex-col">
+      <div className="container flex flex-col  items-center">
         <svg
           viewBox="0 0 112 32"
           fill="none"
@@ -96,6 +101,13 @@ const HomeComponent = () => {
             onChange={(e) => setColumns(+e.target.value)}
           />
         </div>
+      </div>
+      <div className={`grid grid-cols-${columns.toString()} gap-5 px-8`}>
+        {img.map((item, index) => (
+          <div className="bg-pink-500 p-2 " key={index}>
+            item
+          </div>
+        ))}
       </div>
     </section>
   );
