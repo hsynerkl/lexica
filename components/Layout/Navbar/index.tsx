@@ -30,7 +30,7 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-sm ${
+            className={`py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "/"
                 ? "text-white"
                 : router.pathname === "home"
@@ -50,7 +50,7 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-sm ${
+            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "generate" ? "text-white" : "text-black-50"
             }`}
           >
@@ -66,7 +66,7 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-sm ${
+            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "history" ? "text-white" : "text-black-50"
             }`}
           >
@@ -82,7 +82,7 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-sm ${
+            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "likes" ? "text-white" : "text-black-50"
             }`}
           >
@@ -98,7 +98,7 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-sm ${
+            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "account" ? "text-white" : "text-black-50"
             }`}
           >
