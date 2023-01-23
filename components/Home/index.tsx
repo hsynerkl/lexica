@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useState } from "react";
 import CustomButton from "../common/CustomButton";
 
 const HomeComponent = () => {
+  const [columns, setColumns] = useState(0);
   return (
     <section className="bg-black-200 text-white pt-14 flex justify-center">
       <div className="container flex flex-col justify-center items-center">
@@ -83,11 +85,15 @@ const HomeComponent = () => {
         <CustomButton text="search" className="px-12 mb-10 rounded-full" />
 
         <div className="flex mb-14 flex-col gap-5 justify-center">
-          <p className="text-sm text-gray-50 text-center">Columns: 4</p>
+          <p className="text-sm text-gray-50 text-center">Columns: {columns}</p>
 
           <input
-            className="w-48 md:w-96 bg-gray-50 cursor-pointer h-[2px]"
+            className="w-48 md:w-96 bg-gray-50 cursor-pointer h-[2px] hover:bg-black-100 border-none"
             type="range"
+            min={0}
+            max={12}
+            value={columns}
+            onChange={(e) => setColumns(+e.target.value)}
           />
         </div>
       </div>
