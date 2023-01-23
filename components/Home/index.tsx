@@ -80,12 +80,15 @@ const HomeComponent = () => {
           </svg>
         </div>
 
-        <CustomButton text="search" className="px-12 mb-5 rounded-full" />
+        <CustomButton text="search" className="px-12 mb-10 rounded-full" />
 
-        <div className="flex mb-14 flex-col gap-3 justify-center">
+        <div className="flex mb-14 flex-col gap-5 justify-center">
           <p className="text-sm text-gray-50 text-center">Columns: 4</p>
 
-          <input className="" type="range" />
+          <input
+            className="w-48 md:w-96 bg-gray-50 cursor-pointer h-[2px]"
+            type="range"
+          />
         </div>
       </div>
     </section>
