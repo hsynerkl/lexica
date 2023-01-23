@@ -83,7 +83,9 @@ const HomeComponent = () => {
         <CustomButton text="search" className="px-12 mb-5 rounded-full" />
 
         <div className="flex mb-14 flex-col gap-3 justify-center">
-          <p className="text-sm text-gray-50">Columns: 4</p>
+          <p className="text-sm text-gray-50 text-center">Columns: 4</p>
+
+          <input className="" type="range" />
         </div>
       </div>
     </section>
