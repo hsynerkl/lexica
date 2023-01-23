@@ -10,7 +10,7 @@ const img = [
 const HomeComponent = () => {
   const [columns, setColumns] = useState(12);
   return (
-    <section className="min-h-screen bg-black-200 text-white pt-14 flex justify-center flex-col">
+    <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
       <div className="container flex flex-col  items-center">
         <svg
           viewBox="0 0 112 32"
@@ -102,7 +102,9 @@ const HomeComponent = () => {
           />
         </div>
       </div>
-      <div className={`grid grid-cols-${columns.toString()} gap-5 px-8`}>
+      <div
+        className={`grid grid-cols-${columns.toString()} gap-5 px-8 w-screen`}
+      >
         {img.map((item, index) => (
           <div className="bg-pink-500 p-2 " key={index}>
             item
