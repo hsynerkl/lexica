@@ -111,7 +111,7 @@ const HomeComponent = () => {
           </p>
 
           <input
-            className="w-48 md:w-96 cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-50  border-none"
+            className="w-48 md:w-96 cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
             type="range"
             min={1}
             max={12}
