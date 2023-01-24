@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import CustomButton from "../common/CustomButton";
 
 const img = [
@@ -7,8 +7,28 @@ const img = [
   423, 423, 423, 423, 423, 423, 42, 34, 234, 23, 4234, 32, 423, 432, 423, 423,
   523, 432, 423,
 ];
+
 const HomeComponent = () => {
-  const [columns, setColumns] = useState(12);
+  const [imgs, setImgs] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://pexelsdimasv1.p.rapidapi.com/v1/search?query=ocean&locale=en-US&per_page=15&page=1",
+      {
+        method: "GET",
+        headers: {
+          Authorization:
+            "zfYVk5YvwkjkfRskTnCUo8UEJfKf2olFC8lFGqGc1uVOT4YInbsqGdhh",
+
+          "X-RapidAPI-Key":
+            "8c7b64bd81mshbf8bd1ce84a3d21p137356jsn36e4da30c471",
+          "X-RapidAPI-Host": "PexelsdimasV1.p.rapidapi.com",
+        },
+      }
+    ).then((res) => res.json().then((res) => setImgs(res.photos)));
+  }, []);
+
+  const [columns, setColumns] = useState(8);
+  console.log(imgs);
   return (
     <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
       <div className="container flex flex-col  items-center">
@@ -30,7 +50,7 @@ const HomeComponent = () => {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             role="img"
             viewBox="0 0 24 24"
             className="text-base mr-2"
@@ -48,10 +68,10 @@ const HomeComponent = () => {
           <svg
             stroke="currentColor"
             fill="none"
-            stroke-width="2"
+            strokeWidth="2"
             viewBox="0 0 24 24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="absolute left-4 pointer-events-none top-3"
             height="1em"
             width="1em"
@@ -66,16 +86,15 @@ const HomeComponent = () => {
             autoComplete="off"
             className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full text-sm  px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
             placeholder="Search for an image"
-            value=""
           />
 
           <svg
             stroke="currentColor"
             fill="none"
-            stroke-width="2"
+            strokeWidth="2"
             viewBox="0 0 24 24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             height="1em"
             width="1em"
             className="absolute top-3 right-4 cursor-pointer"
@@ -103,11 +122,14 @@ const HomeComponent = () => {
         </div>
       </div>
       <div
-        className={`grid grid-cols-${columns.toString()} gap-5 px-8 w-screen`}
+        className={`grid pb-14 gap-5 px-8 w-screen`}
+        style={{ gridTemplateColumns: `repeat(${columns},minmax(0,1fr))` }}
       >
-        {img.map((item, index) => (
-          <div className="bg-pink-500 p-2 " key={index}>
-            item
+        {imgs?.map((item, index) => (
+          <div key={item?.id}>
+            <div className="relative aspect-h-1 aspect-w-1 ">
+              <Image src={item?.src.large} alt={item?.alt} fill />
+            </div>
           </div>
         ))}
       </div>
