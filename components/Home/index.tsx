@@ -2,17 +2,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import CustomButton from "../common/CustomButton";
 
-const img = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 22, 222, 222, 43, 234, 324, 234, 234, 234, 23,
-  423, 423, 423, 423, 423, 423, 42, 34, 234, 23, 4234, 32, 423, 432, 423, 423,
-  523, 432, 423,
-];
-
 const HomeComponent = () => {
   const [imgs, setImgs] = useState([]);
+  const [columns, setColumns] = useState(8);
+
   useEffect(() => {
     fetch(
-      "https://pexelsdimasv1.p.rapidapi.com/v1/search?query=ocean&locale=en-US&per_page=15&page=1",
+      "https://pexelsdimasv1.p.rapidapi.com/v1/search?query=ocean&locale=en-US&per_page=50&page=1",
       {
         method: "GET",
         headers: {
@@ -27,11 +23,9 @@ const HomeComponent = () => {
     ).then((res) => res.json().then((res) => setImgs(res.photos)));
   }, []);
 
-  const [columns, setColumns] = useState(8);
-  console.log(imgs);
   return (
     <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
-      <div className="container flex flex-col  items-center">
+      <div className="container flex flex-col m-4 items-center pt-16">
         <svg
           viewBox="0 0 112 32"
           fill="none"
@@ -64,7 +58,7 @@ const HomeComponent = () => {
           Join the Discord
         </div>
 
-        <div className="max-w-lg w-full relative my-5">
+        <div className="max-w-lg w-full relative mt-8">
           <svg
             stroke="currentColor"
             fill="none"
@@ -84,7 +78,7 @@ const HomeComponent = () => {
           <input
             id="main-search"
             autoComplete="off"
-            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full text-sm  px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
+            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full text-sm px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
             placeholder="Search for an image"
           />
 
@@ -106,15 +100,20 @@ const HomeComponent = () => {
           </svg>
         </div>
 
-        <CustomButton text="search" className="px-12 mb-10 rounded-full" />
+        <CustomButton
+          text="search"
+          className="!px-12 mt-4 mb-10 !rounded-full"
+        />
 
         <div className="flex mb-14 flex-col gap-5 justify-center">
-          <p className="text-sm text-gray-50 text-center">Columns: {columns}</p>
+          <p className="text-sm text-gray-50 text-center opacity-50">
+            Columns: {columns}
+          </p>
 
           <input
-            className="w-48 md:w-96 bg-gray-50 cursor-pointer h-[2px] hover:bg-black-100 border-none"
+            className="w-48 md:w-96 cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-50  border-none"
             type="range"
-            min={0}
+            min={1}
             max={12}
             value={columns}
             onChange={(e) => setColumns(+e.target.value)}
@@ -127,8 +126,14 @@ const HomeComponent = () => {
       >
         {imgs?.map((item, index) => (
           <div key={item?.id}>
-            <div className="relative aspect-h-1 aspect-w-1 ">
-              <Image src={item?.src.large} alt={item?.alt} fill />
+            <div className={`relative aspect-h-1 aspect-w-1 `}>
+              <Image
+                src={item?.src.large}
+                alt={item?.alt}
+                className="rounded-lg max-h-[768px]"
+                fill
+                loading="eager"
+              />
             </div>
           </div>
         ))}

@@ -9,7 +9,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="md:pt-14">{children}</main>
+      <main>{children}</main>
     </>
   );
 };

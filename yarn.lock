@@ -1462,6 +1462,13 @@ language-tags@=1.0.5:
   dependencies:
     language-subtag-registry "~0.3.2"
 
+lazy-load-images@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/lazy-load-images/-/lazy-load-images-1.0.1.tgz"
+  integrity sha512-wVHnRJmc0YGtwgVRfX7ITZN5VoF0+N92Oc24yj159/NUuDv5uH2nvrvq9qhDn2hMN2k1Lwf5z1rEQqsYbys+3Q==
+  dependencies:
+    live-on-stage "1.0.*"
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz"
@@ -1474,6 +1481,11 @@ lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
   resolved "https://registry.npmjs.org/lilconfig/-/lilconfig-2.0.6.tgz"
   integrity sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==
+
+live-on-stage@1.0.*:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/live-on-stage/-/live-on-stage-1.0.8.tgz"
+  integrity sha512-fg47UTQ+juDrvOAwDH38fOK2sZL7ANiX9W7vBr0NVl/pH31Ckp1/noK7m09MWXjiQf4YK6C2es+ru2G+FjTpww==
 
 locate-path@^6.0.0:
   version "6.0.0"

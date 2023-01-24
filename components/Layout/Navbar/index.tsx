@@ -6,7 +6,7 @@ const Navbar = () => {
   console.log(router.pathname);
 
   return (
-    <nav className="h-14 flex justify-between bg-black-50 items-center px-8 fixed top-0 w-screen backdrop-blur">
+    <nav className="h-14 flex justify-between bg-black-50 items-center bg-opacity-80 px-4 z-[9999] fixed top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
       <svg
         viewBox="0 0 112 32"
         fill="none"
@@ -19,7 +19,7 @@ const Navbar = () => {
         ></path>
       </svg>
 
-      <ul className="[&>li]:text-white flex gap-2">
+      <ul className="[&>li]:text-white flex gap-2 [&>li]:pt-1.5">
         <li
           className={`h-14 flex items-center border-b-[3px] border-b-transparent text-sm hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
             router.pathname === "/"
@@ -35,7 +35,7 @@ const Navbar = () => {
                 ? "text-white"
                 : router.pathname === "home"
                 ? "text-white"
-                : "text-black-50 opacity-80"
+                : "text-gray-50 opacity-80"
             }`}
           >
             Home
@@ -50,8 +50,8 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "generate" ? "text-white" : "text-black-50"
+            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+              router.pathname === "generate" ? "text-white" : "text-gray-50"
             }`}
           >
             Generate
@@ -66,8 +66,8 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "history" ? "text-white" : "text-black-50"
+            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+              router.pathname === "history" ? "text-white" : "text-gray-50"
             }`}
           >
             History
@@ -82,8 +82,8 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "likes" ? "text-white" : "text-black-50"
+            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+              router.pathname === "likes" ? "text-white" : "text-gray-50"
             }`}
           >
             Likes
@@ -98,8 +98,8 @@ const Navbar = () => {
           }`}
         >
           <p
-            className={`text-[#3f3f46] hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "account" ? "text-white" : "text-black-50"
+            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+              router.pathname === "account" ? "text-white" : "text-gray-50"
             }`}
           >
             Account
