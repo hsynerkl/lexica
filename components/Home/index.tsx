@@ -44,6 +44,18 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
     }
   };
 
+  const handleSearchWithIcon = async (text: string) => {
+    try {
+      await fetch(`https://lexica.art/api/v1/search?q=${text}`)
+        .then((res) => res.json().then((res) => res.images))
+        .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
+        .then((res) => setFilteredImages(res));
+    } catch (e) {
+      console.log(e);
+      setLimitPopUp(true);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
       <div className="container flex flex-col m-4 items-center pt-16">
@@ -184,7 +196,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   <div className="flex justify-between">
                     <div
                       className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSearchWithIcon(item?.prompt);
+                      }}
                     >
                       <svg
                         stroke="white"
@@ -264,7 +279,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   <div className="flex justify-between">
                     <div
                       className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSearchWithIcon(item?.prompt);
+                      }}
                     >
                       <svg
                         stroke="white"
