@@ -31,6 +31,13 @@
   border: 0px solid #ffffff;
 }
 
+html,
+body {
+  height: 100vh;
+  background: #27272a;
+  overflow-x: hidden;
+}
+
 .apperence-none-custom::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;

@@ -1,7 +1,7 @@
 import { useContent } from "@/context/Content";
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import CustomButton from "../common/CustomButton";
 import ImageDetailModal from "../common/ImageDetailModal";
 
@@ -12,7 +12,7 @@ type HomeComponentProps = {
 
 const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   const { nsfwContent, handleChangeNsfw, width, height } = useContent();
-  const [columns, setColumns] = useState(width >= 768 ? 8 : 4);
+  const [columns, setColumns] = useState(8);
   const [searchInp, setSearchInp] = useState("");
   const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
   const [limitPopUp, setLimitPopUp] = useState(limit);
@@ -55,6 +55,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
       setLimitPopUp(true);
     }
   };
+
+  useEffect(() => {
+    if (width === 0) return;
+    width >= 768 ? setColumns(8) : setColumns(4);
+  }, [width]);
 
   return (
     <section className="min-h-screen bg-black-200 text-white pb-14 md:pb-0 pt-14 flex items-center flex-col overflow-hidden">
