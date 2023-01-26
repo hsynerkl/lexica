@@ -6,7 +6,7 @@ const Navbar = () => {
   console.log(router.pathname);
 
   return (
-    <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-[9999] fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
+    <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
       <svg
         viewBox="0 0 112 32"
         fill="none"
