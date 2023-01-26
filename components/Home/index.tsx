@@ -1,9 +1,37 @@
+import { useContent } from "@/context/Content";
+import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
-import { useState } from "react";
+import { FC, useState } from "react";
 import CustomButton from "../common/CustomButton";
 
-const HomeComponent = ({ imgs }: any) => {
+type HomeComponentProps = {
+  imgs: LexicaImgProps[];
+  limit: boolean;
+};
+
+const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   const [columns, setColumns] = useState(8);
+  const [searchInp, setSearchInp] = useState("naruto");
+  const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
+  const { nsfwContent, handleChangeNsfw } = useContent();
+  const [limitPopUp, setLimitPopUp] = useState(limit);
+
+  const handleSearch = async () => {
+    if (nsfwContent === undefined) return;
+
+    if (searchInp.trim().length > 3) {
+      try {
+        await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
+          .then((res) => res.json().then((res) => res.images))
+          .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
+          .then((res) => setFilteredImages(res));
+      } catch (e) {
+        console.log(e);
+        setLimitPopUp(true);
+      }
+    }
+  };
+
   return (
     <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
       <div className="container flex flex-col m-4 items-center pt-16">
@@ -59,9 +87,24 @@ const HomeComponent = ({ imgs }: any) => {
           <input
             id="main-search"
             autoComplete="off"
+            value={searchInp}
+            onKeyDown={(e) => e.code === "Enter" && handleSearch()}
+            onChange={(e) => setSearchInp(e.target.value)}
             className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full text-sm px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
             placeholder="Search for an image"
           />
+          <div
+            className="border-b border-b-indigo-400 absolute -right-14 top-1 pb-1"
+            onClick={handleChangeNsfw}
+          >
+            <p
+              className={`${
+                nsfwContent === true ? "bg-black-100" : "bg-transparent"
+              } text-sm text-center text-white py-1 px-2 rounded-md hover:bg-opacity-80 hover:bg-black-100 cursor-pointer transition-all duration-300`}
+            >
+              Nsfw
+            </p>
+          </div>
 
           <svg
             stroke="currentColor"
@@ -84,6 +127,7 @@ const HomeComponent = ({ imgs }: any) => {
         <CustomButton
           text="search"
           className="!px-12 mt-4 mb-10 !rounded-full"
+          onClick={handleSearch}
         />
 
         <div className="flex mb-14 flex-col gap-5 justify-center">
@@ -102,23 +146,49 @@ const HomeComponent = ({ imgs }: any) => {
         </div>
       </div>
       <div
-        className={`grid pb-14 gap-1 px-2 md:px-8 w-screen`}
+        className={`grid pb-14 gap-2 sm:gap-1 px-2 md:px-8 w-screen`}
         style={{ gridTemplateColumns: `repeat(${columns},minmax(0,1fr))` }}
       >
-        {imgs?.map((item: any, index: any) => (
-          <div key={item?.id}>
-            <div className={`relative aspect-h-1 aspect-w-1 `}>
-              <Image
-                src={item?.src.large}
-                alt={item?.alt}
-                className="rounded-lg max-h-[768px]"
-                fill
-                loading="eager"
-              />
-            </div>
-          </div>
-        ))}
+        {filteredImages.length >= 1
+          ? filteredImages?.map((item, index) => (
+              <div className="aspect-h-1 aspect-w-1 relative " key={item?.id}>
+                <Image
+                  src={item?.src}
+                  alt={item?.promptid}
+                  className="rounded-lg"
+                  fill={true}
+                  loading="eager"
+                />
+              </div>
+            ))
+          : imgs?.map((item, index) => (
+              <div className="aspect-h-1 aspect-w-1 relative " key={item?.id}>
+                <Image
+                  src={item?.src}
+                  alt={item?.promptid}
+                  className="rounded-lg"
+                  fill={true}
+                  loading="eager"
+                />
+              </div>
+            ))}
       </div>
+      {limitPopUp && (
+        <div className="absolute p-4 ani right-10 top-16 flex flex-col gap-3 items-center rounded-md bg-white font-bold text-indigo-800">
+          <p className="text-sm">
+            Dakikalık Limit&apos;e takıldınız. Biraz yavaşlayın.
+          </p>
+          <div>
+            <p>. .</p>
+            <p className="rotate-90">(</p>
+          </div>
+          <CustomButton
+            text="tmm."
+            className="!px-6 !rounded-full"
+            onClick={() => setLimitPopUp(false)}
+          />
+        </div>
+      )}
     </section>
   );
 };

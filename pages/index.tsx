@@ -1,39 +1,46 @@
 import HomeComponent from "@/components/Home";
+import { LexicaImgProps } from "@/types/Lexicaimg";
 import Head from "next/head";
 import { FC } from "react";
 
 type HomeProps = {
-  imgs: any;
+  limit: boolean;
+  imgs: LexicaImgProps[];
 };
 
-const Home: FC<HomeProps> = ({ imgs }) => {
+const Home: FC<HomeProps> = ({ imgs, limit }) => {
   return (
     <>
       <Head>
         <title>Lexica</title>
       </Head>
-      <HomeComponent imgs={imgs} />
+      <HomeComponent imgs={imgs} limit={limit} />
     </>
   );
 };
 
 export async function getServerSideProps() {
-  const imgs = await fetch(
-    "https://pexelsdimasv1.p.rapidapi.com/v1/search?query=ocean&locale=en-US&per_page=50&page=1",
-    {
-      method: "GET",
-      headers: {
-        Authorization:
-          "zfYVk5YvwkjkfRskTnCUo8UEJfKf2olFC8lFGqGc1uVOT4YInbsqGdhh",
+  let imgs;
+  let limit;
 
-        "X-RapidAPI-Key": "8c7b64bd81mshbf8bd1ce84a3d21p137356jsn36e4da30c471",
-        "X-RapidAPI-Host": "PexelsdimasV1.p.rapidapi.com",
-      },
-    }
-  ).then((res) => res.json().then((res) => res.photos));
+  try {
+    await fetch("https://lexica.art/api/v1/search?q=naruto").then((res) =>
+      res
+        .json()
+        //@ts-ignore
+        .then((res) => res.images.filter((img) => img.nsfw === false))
+        .then((res) => {
+          imgs = res;
+          limit = false;
+        })
+    );
+  } catch (err) {
+    imgs = [];
+    limit = true;
+    console.log(err);
+  }
 
-  // Pass data to the page via props
-  return { props: { imgs } };
+  return { props: { imgs, limit } };
 }
 
 export default Home;
