@@ -22,7 +22,6 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   });
 
   const handleCloseShowDetail = () => {
-    console.log("girdi");
     setShowDetail({
       isVisible: false,
       data: {},
@@ -251,7 +250,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   loading="eager"
                 />
                 <div className="inset-0 z-50 gap-2 p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
-                  <div className="flex justify-between">
+                  <div
+                    className="flex justify-between"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
                       <svg
                         stroke="white"
@@ -280,7 +282,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex justify-end">
+                  <div
+                    className="flex justify-end"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
                       <svg
                         stroke="currentColor"
@@ -295,7 +300,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex justify-start items-end h-full ">
+                  <div
+                    className="flex justify-start items-end h-full"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <p className="line-clamp text-xs"> {item.prompt} </p>
                   </div>
                 </div>
