@@ -96,34 +96,53 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
           Join the Discord
         </div>
 
-        <div className="max-w-lg w-full relative mt-4">
-          <svg
-            stroke="currentColor"
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="absolute left-4 pointer-events-none top-3"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+        <div className="flex items-center gap-2 mt-4">
+          <div className="max-w-xl w-full relative">
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="absolute left-4 pointer-events-none top-3"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
 
-          <input
-            id="main-search"
-            autoComplete="off"
-            value={searchInp}
-            onKeyDown={(e) => e.code === "Enter" && handleSearch()}
-            onChange={(e) => setSearchInp(e.target.value)}
-            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
-            placeholder="Search for an image"
-          />
+            <input
+              id="main-search"
+              autoComplete="off"
+              value={searchInp}
+              onKeyDown={(e) => e.code === "Enter" && handleSearch()}
+              onChange={(e) => setSearchInp(e.target.value)}
+              className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
+              placeholder="Search for an image"
+            />
+
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              height="1em"
+              width="1em"
+              className="absolute top-3 right-4 cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
           <div
-            className="border-b border-b-indigo-400 absolute invisible md:visible -right-14 top-1 pb-1"
+            className="border-b border-b-indigo-400 pb-1 "
             onClick={handleChangeNsfw}
           >
             <p
@@ -134,23 +153,6 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
               Nsfw
             </p>
           </div>
-
-          <svg
-            stroke="currentColor"
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            height="1em"
-            width="1em"
-            className="absolute top-3 right-4 cursor-pointer"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
         </div>
 
         <CustomButton

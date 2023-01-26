@@ -70,13 +70,7 @@ body {
 
 .line-clamp {
   display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
+  -webkit-line-clamp: 1 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-}
-
-@media (max-width: 768px) {
-  .line-clamp {
-    -webkit-line-clamp: 1;
-  }
 }
