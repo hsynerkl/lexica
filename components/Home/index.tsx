@@ -165,13 +165,13 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
           ? filteredImages?.map((item, index) => (
               <div
                 className="aspect-h-1 aspect-w-1 group relative overflow-hidden"
+                key={item?.id}
                 onClick={() =>
                   setShowDetail({
                     isVisible: true,
                     data: item,
                   })
                 }
-                key={item?.id}
               >
                 <Image
                   src={item?.src}
@@ -182,7 +182,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                 />
                 <div className="inset-0 z-50 gap-2 p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
                   <div className="flex justify-between">
-                    <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <svg
                         stroke="white"
                         fill="none"
@@ -211,7 +214,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                     </div>
                   </div>
                   <div className="flex justify-end">
-                    <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <svg
                         stroke="currentColor"
                         fill="white"
@@ -226,7 +232,12 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                     </div>
                   </div>
                   <div className="flex justify-start items-end h-full ">
-                    <p className="line-clamp text-xs"> {item.prompt} </p>
+                    <p
+                      className="line-clamp text-xs"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {item.prompt}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -250,11 +261,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   loading="eager"
                 />
                 <div className="inset-0 z-50 gap-2 p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
-                  <div
-                    className="flex justify-between"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                  <div className="flex justify-between">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <svg
                         stroke="white"
                         fill="none"
@@ -282,11 +293,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div
-                    className="flex justify-end"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                  <div className="flex justify-end">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <svg
                         stroke="currentColor"
                         fill="white"
@@ -300,11 +311,13 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div
-                    className="flex justify-start items-end h-full"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <p className="line-clamp text-xs"> {item.prompt} </p>
+                  <div className="flex justify-start items-end h-full ">
+                    <p
+                      className="line-clamp text-xs"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {item.prompt}
+                    </p>
                   </div>
                 </div>
               </div>
