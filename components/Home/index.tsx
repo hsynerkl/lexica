@@ -31,9 +31,8 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   const handleChangeNsfw = () => {
     setNsfwContent((prev) => !prev);
   };
-
   const handleSearch = async () => {
-    if (searchInp.trim().length > 3) {
+    if (searchInp.trim().length >= 3) {
       try {
         await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
           .then((res) => res.json().then((res) => res.images))
