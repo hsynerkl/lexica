@@ -1,7 +1,6 @@
-import { useContent } from "@/context/Content";
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import CustomButton from "../common/CustomButton";
 import ImageDetailModal from "../common/ImageDetailModal";
 
@@ -11,8 +10,9 @@ type HomeComponentProps = {
 };
 
 const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
-  const { nsfwContent, handleChangeNsfw, width, height } = useContent();
-  const [columns, setColumns] = useState(8);
+  const [nsfwContent, setNsfwContent] = useState(false);
+  const [columnsMobile, setColumnsMobile] = useState(4);
+  const [columnsWeb, setColumnsWeb] = useState(8);
   const [searchInp, setSearchInp] = useState("");
   const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
   const [limitPopUp, setLimitPopUp] = useState(limit);
@@ -28,9 +28,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
     });
   };
 
-  const handleSearch = async () => {
-    if (nsfwContent === undefined) return;
+  const handleChangeNsfw = () => {
+    setNsfwContent((prev) => !prev);
+  };
 
+  const handleSearch = async () => {
     if (searchInp.trim().length > 3) {
       try {
         await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
@@ -56,14 +58,9 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
     }
   };
 
-  useEffect(() => {
-    if (width === 0) return;
-    width >= 768 ? setColumns(8) : setColumns(4);
-  }, [width]);
-
   return (
-    <section className="min-h-screen bg-black-200 text-white pb-14 md:pb-0 pt-14 flex items-center flex-col overflow-hidden">
-      <div className="container flex flex-col m-4 items-center pt-16">
+    <section className="min-h-screen bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col">
+      <div className="container flex flex-col m-4 items-center md:pt-16">
         <svg
           viewBox="0 0 112 32"
           fill="none"
@@ -105,7 +102,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
               viewBox="0 0 24 24"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="absolute left-4 pointer-events-none top-3"
+              className="absolute left-4 pointer-events-none top-3.5"
               height="1em"
               width="1em"
               xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +130,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
               strokeLinejoin="round"
               height="1em"
               width="1em"
-              className="absolute top-3 right-4 cursor-pointer"
+              className="absolute top-3.5 right-4 cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
             >
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -143,12 +140,12 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
           </div>
           <div
             className="border-b border-b-indigo-400 pb-1 "
-            onClick={handleChangeNsfw}
+            onClick={() => handleChangeNsfw()}
           >
             <p
               className={`${
-                nsfwContent === true ? "bg-black-100" : "bg-transparent"
-              } text-sm text-center text-white py-1 px-2 rounded-md hover:bg-opacity-80 hover:bg-black-100 cursor-pointer transition-all duration-300`}
+                nsfwContent === true ? "!bg-black-100" : "!bg-transparent"
+              } text-sm text-center text-white py-1 px-2 rounded-md hover:bg-opacity-80 hover:bg-black-100 cursor-pointer`}
             >
               Nsfw
             </p>
@@ -161,24 +158,40 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
           onClick={handleSearch}
         />
 
-        <div className="flex mb-14 flex-col gap-5 justify-center">
+        <div className="mb-14 flex-col gap-5 justify-center md:flex hidden">
           <p className="text-sm text-gray-50 text-center opacity-50">
-            Columns: {columns}
+            Columns: {columnsWeb}
           </p>
 
           <input
-            className="w-48 md:w-96 cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
+            className="w-48 md:w-96 hidden md:flex cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
             type="range"
             min={1}
-            max={width >= 768 ? 12 : 4}
-            value={columns}
-            onChange={(e) => setColumns(+e.target.value)}
+            max={12}
+            value={columnsWeb}
+            onChange={(e) => setColumnsWeb(+e.target.value)}
+          />
+        </div>
+
+        <div className="mb-14 flex-col gap-5 justify-center md:hidden flex">
+          <p className="text-sm text-gray-50 text-center opacity-50">
+            Columns: {columnsMobile}
+          </p>
+
+          <input
+            className="w-48 md:w-96 flex md:hidden cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
+            type="range"
+            min={1}
+            max={4}
+            value={columnsMobile}
+            onChange={(e) => setColumnsMobile(+e.target.value)}
           />
         </div>
       </div>
+
       <div
-        className={`grid pb-14 gap-2 sm:gap-1 px-2 md:px-8 w-screen`}
-        style={{ gridTemplateColumns: `repeat(${columns},minmax(0,1fr))` }}
+        className={`pb-14 gap-2 sm:gap-1 px-2 md:px-8 w-screen hidden md:grid`}
+        style={{ gridTemplateColumns: `repeat(${columnsWeb},minmax(0,1fr))` }}
       >
         {filteredImages.length >= 1
           ? filteredImages?.map((item, index) => (
@@ -253,9 +266,9 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex justify-start items-end h-full ">
+                  <div className="justify-start items-end h-full hidden sm:flex">
                     <p
-                      className="line-clamp text-xs hidden sm:flex"
+                      className="line-clamp text-xs "
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.prompt}
@@ -336,9 +349,9 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex justify-start items-end h-full ">
+                  <div className="justify-start items-end h-full hidden sm:flex ">
                     <p
-                      className="line-clamp text-xs hidden sm:flex"
+                      className="line-clamp text-xs "
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.prompt}
@@ -348,6 +361,182 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
               </div>
             ))}
       </div>
+
+      <div
+        className={`pb-14 gap-2 sm:gap-1 px-2 md:px-8 w-screen grid md:hidden`}
+        style={{
+          gridTemplateColumns: `repeat(${columnsMobile},minmax(0,1fr))`,
+        }}
+      >
+        {filteredImages.length >= 1
+          ? filteredImages?.map((item, index) => (
+              <div
+                className="aspect-h-1 aspect-w-1 group relative overflow-hidden"
+                key={item?.id}
+                onClick={() =>
+                  setShowDetail({
+                    isVisible: true,
+                    data: item,
+                  })
+                }
+              >
+                <Image
+                  src={item?.src}
+                  alt={item?.promptid}
+                  className="rounded-lg"
+                  fill={true}
+                  loading="eager"
+                />
+                <div className="inset-0 z-50 gap-2 p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
+                  <div className="flex justify-between">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSearchWithIcon(item?.prompt);
+                      }}
+                    >
+                      <svg
+                        stroke="white"
+                        fill="none"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </div>
+                    <div className="p-2 h-fit hover:bg-black-100 hover:bg-opacity-30 bg-black-50 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                      <svg
+                        stroke="white"
+                        fill="none"
+                        strokeWidth="2"
+                        height="1em"
+                        width="1em"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg
+                        stroke="currentColor"
+                        fill="white"
+                        strokeWidth="0"
+                        viewBox="0 0 512 512"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M224 96l16-32 32-16-32-16-16-32-16 32-32 16 32 16 16 32zM80 160l26.66-53.33L160 80l-53.34-26.67L80 0 53.34 53.33 0 80l53.34 26.67L80 160zm352 128l-26.66 53.33L352 368l53.34 26.67L432 448l26.66-53.33L512 368l-53.34-26.67L432 288zm70.62-193.77L417.77 9.38C411.53 3.12 403.34 0 395.15 0c-8.19 0-16.38 3.12-22.63 9.38L9.38 372.52c-12.5 12.5-12.5 32.76 0 45.25l84.85 84.85c6.25 6.25 14.44 9.37 22.62 9.37 8.19 0 16.38-3.12 22.63-9.37l363.14-363.15c12.5-12.48 12.5-32.75 0-45.24zM359.45 203.46l-50.91-50.91 86.6-86.6 50.91 50.91-86.6 86.6z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="justify-start items-end h-full hidden sm:flex ">
+                    <p
+                      className="line-clamp text-xs "
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {item.prompt}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          : imgs?.map((item, index) => (
+              <div
+                className="aspect-h-1 aspect-w-1 group relative overflow-hidden"
+                key={item?.id}
+                onClick={() =>
+                  setShowDetail({
+                    isVisible: true,
+                    data: item,
+                  })
+                }
+              >
+                <Image
+                  src={item?.src}
+                  alt={item?.promptid}
+                  className="rounded-lg"
+                  fill={true}
+                  loading="eager"
+                />
+                <div className="inset-0 z-50 gap-2 p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
+                  <div className="flex justify-between">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSearchWithIcon(item?.prompt);
+                      }}
+                    >
+                      <svg
+                        stroke="white"
+                        fill="none"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </div>
+                    <div className="p-2 h-fit hover:bg-black-100 hover:bg-opacity-30 bg-black-50 hover:backdrop-blur transition-all duration-150 rounded-lg ">
+                      <svg
+                        stroke="white"
+                        fill="none"
+                        strokeWidth="2"
+                        height="1em"
+                        width="1em"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <div
+                      className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur transition-all duration-150 rounded-lg"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg
+                        stroke="currentColor"
+                        fill="white"
+                        strokeWidth="0"
+                        viewBox="0 0 512 512"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M224 96l16-32 32-16-32-16-16-32-16 32-32 16 32 16 16 32zM80 160l26.66-53.33L160 80l-53.34-26.67L80 0 53.34 53.33 0 80l53.34 26.67L80 160zm352 128l-26.66 53.33L352 368l53.34 26.67L432 448l26.66-53.33L512 368l-53.34-26.67L432 288zm70.62-193.77L417.77 9.38C411.53 3.12 403.34 0 395.15 0c-8.19 0-16.38 3.12-22.63 9.38L9.38 372.52c-12.5 12.5-12.5 32.76 0 45.25l84.85 84.85c6.25 6.25 14.44 9.37 22.62 9.37 8.19 0 16.38-3.12 22.63-9.37l363.14-363.15c12.5-12.48 12.5-32.75 0-45.24zM359.45 203.46l-50.91-50.91 86.6-86.6 50.91 50.91-86.6 86.6z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="justify-start items-end h-full hidden sm:flex">
+                    <p
+                      className="line-clamp text-xs "
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {item.prompt}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+      </div>
+
       {limitPopUp && (
         <div className="absolute p-4 ani right-10 top-16 flex flex-col gap-3 items-center rounded-md bg-white font-bold text-indigo-800">
           <p className="text-sm">

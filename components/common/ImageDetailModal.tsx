@@ -1,7 +1,6 @@
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
 import { FC } from "react";
-import CustomButton from "./CustomButton";
 
 type ImageDetailModalProps = {
   showDetail: {
@@ -15,10 +14,9 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
   showDetail,
   handleCloseShowDetail,
 }) => {
-  console.log(showDetail);
   return (
     <div
-      className="fixed inset-0 w-screen z-[999] h-screen overflow-hidden sm:px-16 px-1 py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80"
+      className="fixed inset-0 z-[9999] sm:px-16 px-1 py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80 overflow-y-hidden"
       onClick={handleCloseShowDetail}
     >
       <div
@@ -26,7 +24,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className="absolute right-0 top-0 px-4 py-2"
+          className="absolute right-0 top-0 px-4 py-1 cursor-pointer hover:opacity-50 transition-colors duration-150"
           onClick={handleCloseShowDetail}
         >
           x
@@ -47,7 +45,6 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                   strokeLinecap="round"
-                  stroke-linejoin="round"
                   className="text-sm mr-2"
                   height="1em"
                   width="1em"
@@ -69,8 +66,6 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
                   fill="none"
                   strokeWidth="2"
                   viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  stroke-linejoin="round"
                   className="text-sm mr-2"
                   height="1em"
                   width="1em"
@@ -91,7 +86,6 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                   strokeLinecap="round"
-                  stroke-linejoin="round"
                   className="text-sm"
                   height="1em"
                   width="1em"
@@ -109,7 +103,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
               <svg
                 stroke="white"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 512 512"
                 className="text-base transition-all w-3 h-3"
                 height="1em"
@@ -161,7 +155,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
             </div>
           </div>
         </div>
-        <div className="relative aspect-w-2 aspect-h-1">
+        <div className="relative aspect-w-2 aspect-h-1 ">
           <div>
             <Image
               src={showDetail.data?.src}
