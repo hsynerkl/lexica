@@ -62,8 +62,14 @@
 }
 
 .line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+  .line-clamp {
+    -webkit-line-clamp: 1;
+  }
 }

@@ -16,11 +16,11 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
 }) => {
   return (
     <div
-      className="fixed inset-0 w-screen z-[999] h-screen overflow-hidden sm:px-16 px-4 py-4 sm:py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80"
+      className="fixed inset-0 w-screen z-[999]  h-screen overflow-hidden sm:px-16 px-4 py-4 sm:py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80"
       onClick={handleCloseShowDetail}
     >
       <div
-        className="grid gap-10 w-full sm:grid-cols-2 bg-zinc-800 drop-shadow-xl overflow-hidden rounded-xl border p-4 border-zinc-700 box-content"
+        className="grid gap-10 w-full md:grid-cols-2 bg-zinc-800 drop-shadow-xl overflow-hidden rounded-xl border p-4 border-zinc-700 box-content max-w-7xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col">

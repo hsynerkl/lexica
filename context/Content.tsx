@@ -1,3 +1,4 @@
+import useWindowDimensions from "@/utils/hooks/useWindowDimensions";
 import {
   createContext,
   FC,
@@ -10,6 +11,8 @@ import {
 type ContentContextType = {
   nsfwContent: boolean | undefined;
   handleChangeNsfw: () => void;
+  width: number;
+  height: number;
 };
 
 type ContentContextProviderProps = {
@@ -22,7 +25,7 @@ export const ContentContextProvider: FC<ContentContextProviderProps> = ({
   children,
 }) => {
   const [nsfwContent, setNsfwContent] = useState<undefined | boolean>();
-
+  const { width, height } = useWindowDimensions();
   const handleChangeNsfw = () => {
     if (nsfwContent === undefined) return;
     localStorage.setItem("nsfwContent", JSON.stringify(!nsfwContent));
@@ -39,7 +42,12 @@ export const ContentContextProvider: FC<ContentContextProviderProps> = ({
     }
   }, []);
 
-  const data = { nsfwContent, handleChangeNsfw };
+  const data = {
+    nsfwContent,
+    handleChangeNsfw,
+    width,
+    height,
+  };
   return (
     <ContentContext.Provider value={data}>{children}</ContentContext.Provider>
   );

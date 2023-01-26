@@ -11,10 +11,10 @@ type HomeComponentProps = {
 };
 
 const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
-  const [columns, setColumns] = useState(8);
+  const { nsfwContent, handleChangeNsfw, width, height } = useContent();
+  const [columns, setColumns] = useState(width >= 768 ? 8 : 4);
   const [searchInp, setSearchInp] = useState("");
   const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
-  const { nsfwContent, handleChangeNsfw } = useContent();
   const [limitPopUp, setLimitPopUp] = useState(limit);
   const [showDetail, setShowDetail] = useState({
     isVisible: false,
@@ -57,7 +57,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   };
 
   return (
-    <section className="min-h-screen bg-black-200 text-white pt-14 flex items-center flex-col overflow-hidden">
+    <section className="min-h-screen bg-black-200 text-white pb-14 md:pb-0 pt-14 flex items-center flex-col overflow-hidden">
       <div className="container flex flex-col m-4 items-center pt-16">
         <svg
           viewBox="0 0 112 32"
@@ -91,7 +91,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
           Join the Discord
         </div>
 
-        <div className="max-w-lg w-full relative mt-8">
+        <div className="max-w-lg w-full relative mt-4">
           <svg
             stroke="currentColor"
             fill="none"
@@ -114,11 +114,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
             value={searchInp}
             onKeyDown={(e) => e.code === "Enter" && handleSearch()}
             onChange={(e) => setSearchInp(e.target.value)}
-            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full text-sm px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
+            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
             placeholder="Search for an image"
           />
           <div
-            className="border-b border-b-indigo-400 absolute -right-14 top-1 pb-1"
+            className="border-b border-b-indigo-400 absolute invisible md:visible -right-14 top-1 pb-1"
             onClick={handleChangeNsfw}
           >
             <p
@@ -150,7 +150,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
 
         <CustomButton
           text="search"
-          className="!px-12 mt-4 mb-10 !rounded-full"
+          className="!px-12 mt-3 mb-3 !rounded-full"
           onClick={handleSearch}
         />
 
@@ -163,7 +163,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
             className="w-48 md:w-96 cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
             type="range"
             min={1}
-            max={12}
+            max={width >= 768 ? 12 : 4}
             value={columns}
             onChange={(e) => setColumns(+e.target.value)}
           />
@@ -236,7 +236,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       <svg
                         stroke="currentColor"
                         fill="white"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -248,7 +248,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   </div>
                   <div className="flex justify-start items-end h-full ">
                     <p
-                      className="line-clamp text-xs"
+                      className="line-clamp text-xs hidden sm:flex"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.prompt}
@@ -319,7 +319,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                       <svg
                         stroke="currentColor"
                         fill="white"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -331,7 +331,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
                   </div>
                   <div className="flex justify-start items-end h-full ">
                     <p
-                      className="line-clamp text-xs"
+                      className="line-clamp text-xs hidden sm:flex"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.prompt}
