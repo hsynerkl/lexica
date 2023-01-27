@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 const Navbar = () => {
   const router = useRouter();
-  console.log(router.pathname);
 
   return (
     <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">

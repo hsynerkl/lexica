@@ -9,6 +9,7 @@ type ImageContainerType = {
   filteredImages: LexicaImgProps[];
   imgs: LexicaImgProps[];
   device: string;
+  searched: boolean;
 };
 
 const ImageContainer: FC<ImageContainerType> = ({
@@ -18,6 +19,7 @@ const ImageContainer: FC<ImageContainerType> = ({
   filteredImages,
   imgs,
   device,
+  searched,
 }) => {
   return (
     <section
@@ -26,8 +28,9 @@ const ImageContainer: FC<ImageContainerType> = ({
       }`}
       style={{ gridTemplateColumns: `repeat(${columns},minmax(0,1fr))` }}
     >
-      {filteredImages.length >= 1
-        ? filteredImages?.map((item) => (
+      {searched === true ? (
+        filteredImages.length >= 1 ? (
+          filteredImages?.map((item) => (
             <Fragment key={item.id}>
               <MappedImage
                 item={item}
@@ -36,15 +39,22 @@ const ImageContainer: FC<ImageContainerType> = ({
               />
             </Fragment>
           ))
-        : imgs?.map((item) => (
-            <Fragment key={item.id}>
-              <MappedImage
-                item={item}
-                handleSetShowDetail={handleSetShowDetail}
-                handleSearchWithIcon={handleSearchWithIcon}
-              />
-            </Fragment>
-          ))}
+        ) : (
+          <p className="text-center text-white opacity-50 col-span-2">
+            Sonuç Yok
+          </p>
+        )
+      ) : (
+        imgs?.map((item) => (
+          <Fragment key={item.id}>
+            <MappedImage
+              item={item}
+              handleSetShowDetail={handleSetShowDetail}
+              handleSearchWithIcon={handleSearchWithIcon}
+            />
+          </Fragment>
+        ))
+      )}
     </section>
   );
 };

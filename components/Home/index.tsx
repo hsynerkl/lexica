@@ -13,9 +13,11 @@ type HomeComponentProps = {
 
 const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   const [nsfwContent, setNsfwContent] = useState(false);
-  const [columnsMobile, setColumnsMobile] = useState(4);
+  const [columnsMobile, setColumnsMobile] = useState(2);
+  const [searchLimit, setSearchLimit] = useState(limit);
   const [columnsWeb, setColumnsWeb] = useState(8);
   const [searchInp, setSearchInp] = useState("");
+  const [searched, setSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
   const [showDetail, setShowDetail] = useState({
@@ -63,9 +65,11 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
       await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
         .then((res) => res.json().then((res) => res.images))
         .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
-        .then((res) => setFilteredImages(res));
+        .then((res) => setFilteredImages(res))
+        .then(() => setSearched(true));
     } catch (e) {
       console.log(e);
+      setSearchLimit(true);
     } finally {
       handleLoading(false);
     }
@@ -81,13 +85,14 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         .then(() => handleLoading(false));
     } catch (e) {
       console.log(e);
+      setSearchLimit(true);
     } finally {
       handleLoading(false);
     }
   };
 
   useEffect(() => {
-    limit &&
+    searchLimit &&
       toast("Limite takıldınız.", {
         position: "top-right",
         autoClose: 5000,
@@ -98,7 +103,8 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         progress: undefined,
         theme: "dark",
       });
-  }, [limit]);
+    setSearchLimit(false);
+  }, [searchLimit]);
 
   return (
     <div className="bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col overflow-x-hidden">
@@ -121,6 +127,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         filteredImages={filteredImages}
         imgs={imgs}
         device={"web"}
+        searched={searched}
       />
 
       <ImageContainer
@@ -130,6 +137,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         filteredImages={filteredImages}
         imgs={imgs}
         device={"mobile"}
+        searched={searched}
       />
 
       {showDetail.isVisible && (
