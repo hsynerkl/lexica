@@ -31,8 +31,9 @@ export async function getServerSideProps() {
     await fetch("https://lexica.art/api/v1/search?q=apple").then((res) =>
       res
         .json()
-        //@ts-ignore
-        .then((res) => res.images.filter((img) => img.nsfw === false))
+        .then((res) =>
+          res.images.filter((img: LexicaImgProps) => img.nsfw === false)
+        )
         .then((res) => {
           imgs = res;
           limit = false;

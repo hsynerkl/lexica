@@ -23,7 +23,7 @@ const Navbar = () => {
 
       <ul className="[&>li]:text-white gap-2 [&>li]:pt-1.5 md:flex hidden ">
         <li
-          className={`h-14 flex group items-center border-b-[3px] border-b-transparent text-sm hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] border-b-transparent text-sm cursor-pointer  ${
             router.pathname === "/"
               ? "!border-b-purple-50"
               : router.pathname === "/home"
@@ -46,7 +46,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/generate"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -63,7 +63,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/history"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -80,7 +80,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/likes"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -97,7 +97,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/account"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -117,7 +117,7 @@ const Navbar = () => {
 
       <ul className="w-full h-full gap-1 md:hidden flex justify-center">
         <li
-          className={`h-14 flex group px-4 items-center border-b-[3px] border-b-transparent  hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group px-4 items-center border-b-[2px] border-b-transparent  hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/"
               ? "!border-b-purple-50"
               : router.pathname === "/"
@@ -143,7 +143,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group px-4 items-center border-b-[2px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/generate"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -172,7 +172,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group px-4 items-center border-b-[2px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/history"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -196,7 +196,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group px-4 items-center border-b-[2px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/account"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -218,7 +218,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex group px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
+          className={`h-14 flex group px-4 items-center border-b-[2px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/likes"
               ? "!border-b-purple-50"
               : "border-b-transparent"
