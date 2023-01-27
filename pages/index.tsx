@@ -13,6 +13,10 @@ const Home: FC<HomeProps> = ({ imgs, limit }) => {
     <>
       <Head>
         <title>Lexica</title>
+        <meta
+          name="description"
+          content="Hüseyin Erkal Clone Project with NEXT JS"
+        />
       </Head>
       <HomeComponent imgs={imgs} limit={limit} />
     </>
