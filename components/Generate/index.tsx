@@ -203,7 +203,7 @@ const GenerateComponent = () => {
           {windowVisible && (
             <div className="relative flex justify-center rounded-md">
               <div
-                className="absolute -top-4 py-2 px-2 border border-white bg-black-50 flex justify-center items-center text-white"
+                className="absolute translate-all duration-150 -top-4 py-2 px-2 border border-white bg-black-50 flex justify-center items-center text-white"
                 style={{
                   width: windowValue.width,
                   height: windowValue.height,
