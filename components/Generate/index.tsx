@@ -96,12 +96,10 @@ const GenerateComponent = () => {
 
   useEffect(() => {
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
-      console.log("girdi");
       setWindowVisible(true);
     };
 
     const handleMouseUp = (e: MouseEvent | TouchEvent) => {
-      console.log("çıktı");
       setWindowVisible(false);
     };
 
@@ -123,7 +121,7 @@ const GenerateComponent = () => {
   return (
     <section className="flex justify-center md:pb-20 md:pt-20 pt-4 pb-48 text-white bg-black-200 ">
       <div className="container px-4 pt-4 gap-10 grid md:grid-cols-8 ">
-        <div className="md:col-span-6">
+        <div className="md:col-span-5 xl:col-span-6">
           <p className="text-xs opacity-50 pb-1 pl-2">Describe your image</p>
           <textarea
             placeholder="A steampunk teddy bear vending machine"
@@ -138,7 +136,7 @@ const GenerateComponent = () => {
             <CustomButton text="Generate" className="!rounded-full !px-6" />
           </div>
         </div>
-        <div className="md:col-span-2 border border-zinc-700 rounded-lg px-5 py-4 pb-6 shadow-md h-fit flex flex-col relative">
+        <div className="md:col-span-3 xl:col-span-2 border border-zinc-700 rounded-lg px-5 py-4 pb-6 shadow-md h-fit flex flex-col relative">
           <div className="flex gap-2 items-center">
             <svg
               stroke="currentColor"
@@ -179,11 +177,14 @@ const GenerateComponent = () => {
               <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
               <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"></path>
             </svg>
-            {!windowVisible && (
-              <p className="text-xs text-white text-opacity-50">
-                {windowValue.textW} x {windowValue.textH}
-              </p>
-            )}
+
+            <p
+              className={`text-sm text-white ${
+                !windowVisible === false && "text-opacity-0"
+              }`}
+            >
+              {windowValue.textW} x {windowValue.textH}
+            </p>
 
             <svg
               stroke="currentColor"
@@ -202,13 +203,13 @@ const GenerateComponent = () => {
           {windowVisible && (
             <div className="relative flex justify-center rounded-md">
               <div
-                className="absolute -top-4 p-2 bg-black-50 flex justify-center items-center text-white text-opacity-50"
+                className="absolute -top-4 py-2 px-2 border border-white bg-black-50 flex justify-center items-center text-white"
                 style={{
                   width: windowValue.width,
                   height: windowValue.height,
                 }}
               >
-                <p className="text-xs">
+                <p className="text-xs text-opacity-70">
                   {windowValue.textW} x {windowValue.textH}
                 </p>
               </div>
