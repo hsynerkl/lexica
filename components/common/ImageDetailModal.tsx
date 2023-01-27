@@ -1,3 +1,5 @@
+import useClipboard from "react-use-clipboard";
+
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
 import { FC } from "react";
@@ -14,6 +16,14 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
   showDetail,
   handleCloseShowDetail,
 }) => {
+  const [copyPrompt, setCopyPrompt] = useClipboard(showDetail.data.prompt, {
+    successDuration: 1000,
+  });
+
+  const [copyUrl, setCopyUrl] = useClipboard(showDetail.data.src, {
+    successDuration: 1000,
+  });
+
   return (
     <div
       className="fixed inset-0 z-[9999] sm:px-16 px-1 py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80 overflow-y-hidden"
@@ -35,9 +45,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
             <div className="flex gap-2">
               <div
                 className="text-xs rounded-md sm:text-xs active:scale-95 transition-all transform-gpu whitespace-nowrap flex-1 flex select-none cursor-pointer hover:bg-zinc-600 border border-zinc-600 bg-zinc-700 items-center justify-center shadow px-2.5 py-2 w-fit-content"
-                onClick={async () => {
-                  await navigator.clipboard.writeText(showDetail.data?.prompt);
-                }}
+                onClick={setCopyPrompt}
               >
                 <svg
                   stroke="white"
@@ -56,9 +64,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
                 <p>Copy prompt</p>
               </div>
               <div
-                onClick={async () => {
-                  await navigator.clipboard.writeText(showDetail.data?.src);
-                }}
+                onClick={setCopyUrl}
                 className="text-xs rounded-md sm:text-xs active:scale-95 transition-all transform-gpu whitespace-nowrap flex-1 flex select-none cursor-pointer hover:bg-zinc-600 border border-zinc-600 bg-zinc-700 items-center justify-center shadow px-2.5 py-2 w-fit-content"
               >
                 <svg
@@ -162,7 +168,6 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
               alt={showDetail.data?.promptid}
               className="rounded-lg"
               fill
-              loading="eager"
             />
           </div>
         </div>
