@@ -16,6 +16,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   const [columnsMobile, setColumnsMobile] = useState(4);
   const [columnsWeb, setColumnsWeb] = useState(8);
   const [searchInp, setSearchInp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [filteredImages, setFilteredImages] = useState<LexicaImgProps[]>([]);
   const [showDetail, setShowDetail] = useState({
     isVisible: false,
@@ -36,6 +37,10 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
     });
   };
 
+  const handleLoading = (value: boolean) => {
+    setIsLoading(value);
+  };
+
   const handleChangeNsfw = () => {
     setNsfwContent((prev) => !prev);
   };
@@ -53,26 +58,31 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   };
 
   const handleSearch = async () => {
-    if (searchInp.trim().length >= 3) {
-      try {
-        await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
-          .then((res) => res.json().then((res) => res.images))
-          .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
-          .then((res) => setFilteredImages(res));
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
-
-  const handleSearchWithIcon = async (text: string) => {
     try {
-      await fetch(`https://lexica.art/api/v1/search?q=${text}`)
+      handleLoading(true);
+      await fetch(`https://lexica.art/api/v1/search?q=${searchInp}`)
         .then((res) => res.json().then((res) => res.images))
         .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
         .then((res) => setFilteredImages(res));
     } catch (e) {
       console.log(e);
+    } finally {
+      handleLoading(false);
+    }
+  };
+
+  const handleSearchWithIcon = async (text: string) => {
+    try {
+      handleLoading(true);
+      await fetch(`https://lexica.art/api/v1/search?q=${text}`)
+        .then((res) => res.json().then((res) => res.images))
+        .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
+        .then((res) => setFilteredImages(res))
+        .then(() => handleLoading(false));
+    } catch (e) {
+      console.log(e);
+    } finally {
+      handleLoading(false);
     }
   };
 
@@ -102,6 +112,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         handleSetSearch={handleSetSearch}
         handleSetWebColumns={handleSetWebColumns}
         handleSetMobileColumns={handleSetMobileColumns}
+        isLoading={isLoading}
       />
       <ImageContainer
         columns={columnsWeb}

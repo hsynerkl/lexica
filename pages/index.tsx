@@ -28,7 +28,9 @@ export async function getServerSideProps() {
   let limit;
 
   try {
-    await fetch("https://lexica.art/api/v1/search?q=naruto").then((res) =>
+    await fetch(
+      "https://lexica.art/api/v1/search?q=gergin görünüşlü adam mount and blade warband"
+    ).then((res) =>
       res
         .json()
         //@ts-ignore

@@ -11,6 +11,7 @@ type SearchbarProps = {
   handleSetSearch: (text: string) => void;
   handleSetWebColumns: (text: string) => void;
   handleSetMobileColumns: (text: string) => void;
+  isLoading: boolean;
 };
 
 const Searchbar: FC<SearchbarProps> = ({
@@ -23,6 +24,7 @@ const Searchbar: FC<SearchbarProps> = ({
   handleSetSearch,
   handleSetWebColumns,
   handleSetMobileColumns,
+  isLoading,
 }) => {
   return (
     <div className="container flex flex-col m-4 items-center md:pt-16">
@@ -82,7 +84,7 @@ const Searchbar: FC<SearchbarProps> = ({
             value={searchInp}
             onKeyDown={(e) => e.code === "Enter" && handleSearch()}
             onChange={(e) => handleSetSearch(e.target.value)}
-            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700"
+            className="bg-zinc-700 w-full flex-1 py-2.5 rounded-full px-12 focus:outline-none focus:ring-1 focus:ring-indigo-700 placeholder:text-xs"
             placeholder="Search for an image"
           />
 
@@ -116,12 +118,21 @@ const Searchbar: FC<SearchbarProps> = ({
           </p>
         </div>
       </div>
-
-      <CustomButton
-        text="search"
-        className="!px-12 mt-3 mb-3 !rounded-full"
-        onClick={handleSearch}
-      />
+      {!isLoading ? (
+        <CustomButton
+          text="search"
+          className="!px-12 mt-3 mb-3 !rounded-full"
+          onClick={handleSearch}
+        />
+      ) : (
+        <div className="w-fit py-2 text-white items-center flex hover:brightness-110 px-6 mt-3 mb-3 rounded-full text-xs md:text-sm bg-gradient-to-t from-indigo-800 via-indigo-800 to-indigo-600 drop-shadow font-medium cursor-pointer">
+          <svg
+            className="animate-spin border-dotted border-white border-2 rounded-full h-4 w-4 mr-4"
+            viewBox="0 0 24 24"
+          ></svg>
+          <p className="ml-2">loading</p>
+        </div>
+      )}
 
       <div className="mb-14 flex-col gap-5 justify-center md:flex hidden">
         <p className="text-sm text-gray-50 text-center opacity-50">

@@ -37,9 +37,9 @@ const Navbar = () => {
             className={`py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "/"
                 ? "text-white"
-                : router.pathname === "/home"
+                : router.pathname === "/"
                 ? "text-white"
-                : "text-gray-50"
+                : "!text-gray-50"
             }`}
           >
             Home
@@ -121,22 +121,24 @@ const Navbar = () => {
           className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent  hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
             router.pathname === "/"
               ? "!border-b-purple-50"
-              : router.pathname === "home"
+              : router.pathname === "/"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <svg
-            stroke="white"
-            fill="none"
-            strokeWidth={2}
-            className="w-full h-6"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
+          <Link href="/">
+            <svg
+              stroke="white"
+              fill="none"
+              strokeWidth={2}
+              className="w-full h-6"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </Link>
         </li>
 
         <li
@@ -146,22 +148,26 @@ const Navbar = () => {
               : "border-b-transparent"
           }`}
         >
-          <svg
-            stroke={`${router.pathname === "/generate" ? "white" : "#A1A1AA"}`}
-            fill="none"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-            className="w-full h-6"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
-            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
-            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
-            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
-            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
-          </svg>
+          <Link href="/generate">
+            <svg
+              stroke={`${
+                router.pathname === "/generate" ? "white" : "#A1A1AA"
+              }`}
+              fill="none"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              className="w-full h-6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+              <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+              <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+              <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+              <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+              <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+            </svg>
+          </Link>
         </li>
 
         <li
@@ -171,19 +177,21 @@ const Navbar = () => {
               : "border-b-transparent"
           }`}
         >
-          <svg
-            stroke={`${router.pathname === "/history" ? "white" : "#A1A1AA"}`}
-            fill="none"
-            viewBox="0 0 16 16"
-            className="w-full h-6"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M13.507 12.324a7 7 0 0 0 .065-8.56A7 7 0 0 0 2 4.393V2H1v3.5l.5.5H5V5H2.811a6.008 6.008 0 1 1-.135 5.77l-.887.462a7 7 0 0 0 11.718 1.092zm-3.361-.97l.708-.707L8 7.792V4H7v4l.146.354 3 3z"
-            ></path>
-          </svg>
+          <Link href="/history">
+            <svg
+              stroke={`${router.pathname === "/history" ? "white" : "#A1A1AA"}`}
+              fill="none"
+              viewBox="0 0 16 16"
+              className="w-full h-6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M13.507 12.324a7 7 0 0 0 .065-8.56A7 7 0 0 0 2 4.393V2H1v3.5l.5.5H5V5H2.811a6.008 6.008 0 1 1-.135 5.77l-.887.462a7 7 0 0 0 11.718 1.092zm-3.361-.97l.708-.707L8 7.792V4H7v4l.146.354 3 3z"
+              ></path>
+            </svg>
+          </Link>
         </li>
 
         <li
@@ -193,18 +201,21 @@ const Navbar = () => {
               : "border-b-transparent"
           }`}
         >
-          <svg
-            stroke={`${router.pathname === "/account" ? "white" : "#A1A1AA"}`}
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            className="w-full h-6"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
+          <Link href="/account">
+            <svg
+              stroke={`${router.pathname === "/account" ? "white" : "#A1A1AA"}`}
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              className="w-full h-6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </Link>
         </li>
+
         <li
           className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
             router.pathname === "/likes"
@@ -212,16 +223,18 @@ const Navbar = () => {
               : "border-b-transparent"
           }`}
         >
-          <svg
-            stroke={`${router.pathname === "/likes" ? "white" : "#A1A1AA"}`}
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            className="w-full h-6"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
+          <Link href="/likes">
+            <svg
+              stroke={`${router.pathname === "/likes" ? "white" : "#A1A1AA"}`}
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              className="w-full h-6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </Link>
         </li>
       </ul>
     </nav>
