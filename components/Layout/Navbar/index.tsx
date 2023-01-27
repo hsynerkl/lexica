@@ -24,7 +24,7 @@ const Navbar = () => {
 
       <ul className="[&>li]:text-white gap-2 [&>li]:pt-1.5 md:flex hidden ">
         <li
-          className={`h-14 flex items-center border-b-[3px] border-b-transparent text-sm hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex items-center border-b-[3px] border-b-transparent text-sm hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/"
               ? "!border-b-purple-50"
               : router.pathname === "/home"
@@ -34,7 +34,7 @@ const Navbar = () => {
         >
           <Link
             href="/"
-            className={`py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+            className={`py-2 px-4  hover:bg-black-100 rounded-md hover:!text-white ${
               router.pathname === "/"
                 ? "text-white"
                 : router.pathname === "/"
@@ -47,7 +47,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/generate"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -55,7 +55,7 @@ const Navbar = () => {
         >
           <Link
             href="/generate"
-            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+            className={`hover:text-white py-2 px-4  hover:bg-black-100 rounded-md ${
               router.pathname === "/generate" ? "text-white" : "text-gray-50"
             }`}
           >
@@ -64,7 +64,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/history"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -72,7 +72,7 @@ const Navbar = () => {
         >
           <Link
             href="/history"
-            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+            className={`hover:text-white py-2 px-4  hover:bg-black-100 rounded-md ${
               router.pathname === "/history" ? "text-white" : "text-gray-50"
             }`}
           >
@@ -81,7 +81,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/likes"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -89,7 +89,7 @@ const Navbar = () => {
         >
           <Link
             href="/likes"
-            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+            className={`hover:text-white py-2 px-4  hover:bg-black-100 rounded-md ${
               router.pathname === "/likes" ? "text-white" : "text-gray-50"
             }`}
           >
@@ -98,7 +98,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer  ${
             router.pathname === "/account"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -106,7 +106,7 @@ const Navbar = () => {
         >
           <Link
             href="/account"
-            className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
+            className={`hover:text-white py-2 px-4  hover:bg-black-100 rounded-md ${
               router.pathname === "/account" ? "text-white" : "text-gray-50"
             }`}
           >
@@ -118,7 +118,7 @@ const Navbar = () => {
 
       <ul className="w-full h-full gap-1 md:hidden flex justify-center">
         <li
-          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent  hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent  hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/"
               ? "!border-b-purple-50"
               : router.pathname === "/"
@@ -128,7 +128,9 @@ const Navbar = () => {
         >
           <Link href="/">
             <svg
-              stroke="white"
+              stroke={`
+              ${router.pathname === "/" ? "white" : "#A1A1AA"}
+              `}
               fill="none"
               strokeWidth={2}
               className="w-full h-6"
@@ -142,7 +144,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/generate"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -171,7 +173,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/history"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -195,7 +197,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/account"
               ? "!border-b-purple-50"
               : "border-b-transparent"
@@ -217,7 +219,7 @@ const Navbar = () => {
         </li>
 
         <li
-          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
+          className={`h-14 flex px-4 items-center border-b-[3px] border-b-transparent hover:border-b-purple-50 cursor-pointer  ${
             router.pathname === "/likes"
               ? "!border-b-purple-50"
               : "border-b-transparent"
