@@ -23,7 +23,7 @@ const ImageContainer: FC<ImageContainerType> = ({
 }) => {
   return (
     <section
-      className={`pb-14 gap-2 sm:gap-1 px-2 w-screen ${
+      className={`gap-2 sm:gap-1 px-2 w-screen ${
         device === "mobile" ? "grid md:hidden" : "hidden md:grid"
       }`}
       style={{ gridTemplateColumns: `repeat(${columns},minmax(0,1fr))` }}

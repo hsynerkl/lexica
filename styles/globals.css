@@ -33,9 +33,7 @@
 
 html,
 body {
-  height: 100vh;
   background: #27272a;
-  overflow-x: hidden;
 }
 
 .apperence-none-custom::-webkit-slider-thumb {
