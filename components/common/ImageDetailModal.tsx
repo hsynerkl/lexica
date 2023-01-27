@@ -20,7 +20,7 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
       onClick={handleCloseShowDetail}
     >
       <div
-        className="grid md:gap-10 w-full md:grid-cols-2 bg-zinc-800 drop-shadow-xl overflow-hidden rounded-xl border px-1 sm:px-4 py-8 border-zinc-700 box-content max-w-5xl relative"
+        className="z-10 grid md:gap-10 w-full md:grid-cols-2 bg-zinc-800 drop-shadow-xl overflow-hidden rounded-xl border px-1 sm:px-4 py-8 border-zinc-700 box-content max-w-5xl relative overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div

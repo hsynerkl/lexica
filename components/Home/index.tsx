@@ -58,7 +58,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   };
 
   return (
-    <section className="min-h-screen bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col">
+    <section className="bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col">
       <div className="container flex flex-col m-4 items-center md:pt-16">
         <svg
           viewBox="0 0 112 32"
