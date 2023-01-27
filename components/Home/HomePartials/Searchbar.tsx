@@ -109,8 +109,8 @@ const Searchbar: FC<SearchbarProps> = ({
         >
           <p
             className={`${
-              nsfwContent === true ? "!bg-black-100" : "!bg-transparent"
-            } text-sm text-center text-white py-1 px-2 rounded-md hover:bg-opacity-80 hover:bg-black-100 cursor-pointer`}
+              nsfwContent === true ? "!bg-black-100" : "bg-transparent"
+            } text-sm text-center text-white py-1 px-2 rounded-md hover:bg-opacity-80 hover:bg-black-100 transition-all duration-150 cursor-pointer`}
           >
             Nsfw
           </p>

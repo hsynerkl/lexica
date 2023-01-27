@@ -91,7 +91,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   }, [limit]);
 
   return (
-    <div className="bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col">
+    <div className="bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col overflow-x-hidden">
       <Searchbar
         searchInp={searchInp}
         handleSearch={handleSearch}

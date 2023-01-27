@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 const Navbar = () => {
   const router = useRouter();
+  console.log(router.pathname);
 
   return (
     <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
@@ -26,86 +27,91 @@ const Navbar = () => {
           className={`h-14 flex items-center border-b-[3px] border-b-transparent text-sm hover:border-b-purple-50 cursor-pointer transition-all duration-150 ${
             router.pathname === "/"
               ? "!border-b-purple-50"
-              : router.pathname === "home"
+              : router.pathname === "/home"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <p
+          <Link
+            href="/"
             className={`py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
               router.pathname === "/"
                 ? "text-white"
-                : router.pathname === "home"
+                : router.pathname === "/home"
                 ? "text-white"
-                : "text-gray-50 opacity-80"
+                : "text-gray-50"
             }`}
           >
             Home
-          </p>
+          </Link>
         </li>
 
         <li
           className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
-            router.pathname === "generate"
+            router.pathname === "/generate"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <p
+          <Link
+            href="/generate"
             className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "generate" ? "text-white" : "text-gray-50"
+              router.pathname === "/generate" ? "text-white" : "text-gray-50"
             }`}
           >
             Generate
-          </p>
+          </Link>
         </li>
 
         <li
           className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
-            router.pathname === "history"
+            router.pathname === "/history"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <p
+          <Link
+            href="/history"
             className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "history" ? "text-white" : "text-gray-50"
+              router.pathname === "/history" ? "text-white" : "text-gray-50"
             }`}
           >
             History
-          </p>
+          </Link>
         </li>
 
         <li
           className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
-            router.pathname === "likes"
+            router.pathname === "/likes"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <p
+          <Link
+            href="/likes"
             className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "likes" ? "text-white" : "text-gray-50"
+              router.pathname === "/likes" ? "text-white" : "text-gray-50"
             }`}
           >
             Likes
-          </p>
+          </Link>
         </li>
 
         <li
           className={`h-14 flex items-center border-b-[3px] text-sm hover:border-b-transparent cursor-pointer transition-all duration-150 ${
-            router.pathname === "account"
+            router.pathname === "/account"
               ? "!border-b-purple-50"
               : "border-b-transparent"
           }`}
         >
-          <p
+          <Link
+            href="/account"
             className={`hover:text-white py-2 px-4 transition-all duration-150 hover:bg-black-100 rounded-md ${
-              router.pathname === "account" ? "text-white" : "text-gray-50"
+              router.pathname === "/account" ? "text-white" : "text-gray-50"
             }`}
           >
             Account
-          </p>
+          </Link>
         </li>
       </ul>
       <CustomButton text="Get started" className="md:flex hidden" />

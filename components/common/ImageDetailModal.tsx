@@ -1,5 +1,4 @@
 import useClipboard from "react-use-clipboard";
-
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
 import { FC } from "react";
