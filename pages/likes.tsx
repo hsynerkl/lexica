@@ -5,7 +5,7 @@ const Likes = () => {
   return (
     <>
       <Head>
-        <title>Generate</title>
+        <title>Likes</title>
       </Head>
       <LikesComponent />
     </>
