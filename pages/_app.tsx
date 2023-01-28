@@ -1,14 +1,14 @@
 import Layout from "@/components/Layout";
-import { ContentContextProvider } from "@/context/Content";
+import { AuthContextProvider } from "@/context/Auth";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ContentContextProvider>
+    <AuthContextProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </ContentContextProvider>
+    </AuthContextProvider>
   );
 }

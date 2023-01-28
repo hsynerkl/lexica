@@ -1,9 +1,11 @@
 import CustomButton from "@/components/common/CustomButton";
+import { useAuth } from "@/context/Auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
   const router = useRouter();
+  const { handleShowHidemModal } = useAuth();
 
   return (
     <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
@@ -113,7 +115,11 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
-      <CustomButton text="Get started" className="md:flex hidden" />
+      <CustomButton
+        text="Get started"
+        className="md:flex hidden"
+        onClick={handleShowHidemModal}
+      />
 
       <ul className="w-full h-full gap-1 md:hidden flex justify-center">
         <li
