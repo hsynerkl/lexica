@@ -1,15 +1,15 @@
-import GenerateComponent from "@/components/Generate";
+import AccountComponent from "@/components/Account";
 import Head from "next/head";
 
-const Generate = () => {
+const Account = () => {
   return (
     <>
       <Head>
-        <title>Generate</title>
+        <title>Account</title>
       </Head>
-      <GenerateComponent />
+      <AccountComponent />
     </>
   );
 };
 
-export default Generate;
+export default Account;
