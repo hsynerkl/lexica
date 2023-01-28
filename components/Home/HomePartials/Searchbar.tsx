@@ -140,7 +140,7 @@ const Searchbar: FC<SearchbarProps> = ({
         </p>
 
         <input
-          className="w-48 md:w-96 hidden md:flex cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
+          className="w-48 md:w-96 hidden md:flex cursor-pointer duration-150 hover:opacity-80"
           type="range"
           min={1}
           max={12}
@@ -155,7 +155,7 @@ const Searchbar: FC<SearchbarProps> = ({
         </p>
 
         <input
-          className="w-48 md:w-96 flex md:hidden cursor-pointer apperence-none-custom transition-all duration-150 hover:opacity-80  border-none"
+          className="w-48 md:w-96 hidden md:flex cursor-pointer duration-150 hover:opacity-80"
           type="range"
           min={1}
           max={4}

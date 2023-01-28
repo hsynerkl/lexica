@@ -29,15 +29,15 @@ const ImageDetailModal: FC<ImageDetailModalProps> = ({
       onClick={handleCloseShowDetail}
     >
       <div
+        className="absolute right-0 top-0 px-4 py-1 cursor-pointer hover:opacity-50 transition-colors duration-150"
+        onClick={handleCloseShowDetail}
+      >
+        x
+      </div>
+      <div
         className="z-10 grid md:gap-10 w-full md:grid-cols-2 bg-zinc-800 drop-shadow-xl overflow-hidden rounded-xl border px-1 sm:px-4 py-8 border-zinc-700 box-content max-w-5xl relative overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="absolute right-0 top-0 px-4 py-1 cursor-pointer hover:opacity-50 transition-colors duration-150"
-          onClick={handleCloseShowDetail}
-        >
-          x
-        </div>
         <div className="flex flex-col h-fit">
           <div className="px-4 py-3 bg-zinc-700 rounded-xl shadow bg-opacity-50 font-light flex flex-col space-y-5">
             <p>{showDetail.data?.prompt}</p>

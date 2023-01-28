@@ -82,7 +82,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         .then((res) => res.json().then((res) => res.images))
         .then((res) => res.filter((img: any) => img.nsfw === nsfwContent))
         .then((res) => setFilteredImages(res))
-        .then(() => handleLoading(false));
+        .then(() => setSearched(true));
     } catch (e) {
       console.log(e);
       setSearchLimit(true);
@@ -107,7 +107,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
   }, [searchLimit]);
 
   return (
-    <div className="bg-black-200 text-white pb-14 md:pb-0 md:pt-14 flex items-center flex-col overflow-x-hidden">
+    <div className="bg-black-200 text-white pb-16 md:pb-2 md:pt-14 flex items-center flex-col overflow-y-auto h-screen overflow-x-hidden">
       <Searchbar
         searchInp={searchInp}
         handleSearch={handleSearch}
