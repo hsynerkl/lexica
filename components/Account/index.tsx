@@ -34,7 +34,7 @@ const AccountComponent = () => {
           </p>
         </div>
 
-        <div className="grid w-full md:grid-cols-3 gap-8 md:gap-6 mt-6 md:mt-12">
+        <div className="grid w-full md:grid-cols-3 gap-8 md:gap-6 mt-6 md:mt-12 ">
           <div className="flex flex-col p-6 bg-black-50 rounded-xl">
             <p className="text-white text-xl font-semibold leading-6">
               Starter
