@@ -68,6 +68,16 @@ export const CommonFunctionsContextProvider: FC<
     const localLikes = await JSON.parse(localStorage.getItem("likes")!);
     await localLikes.push(like);
     localStorage.setItem("likes", JSON.stringify(localLikes));
+    toast("Added likes.", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   const handleSetShowDetail = (item: LexicaImgProps) => {
@@ -150,8 +160,10 @@ export const CommonFunctionsContextProvider: FC<
 
   const handleRemoveLikes = async (like: LexicaImgProps) => {
     const localLikes = await JSON.parse(localStorage.getItem("likes")!);
-    await localLikes.filter((item: LexicaImgProps) => item.id !== like.id);
-    localStorage.setItem("likes", JSON.stringify(localLikes));
+    const newData = await localLikes.filter(
+      (item: LexicaImgProps) => item.id !== like.id
+    );
+    localStorage.setItem("likes", JSON.stringify(newData));
   };
 
   useEffect(() => {

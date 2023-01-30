@@ -1,10 +1,13 @@
+import { useCommonFunctions } from "@/context/CommonFunctions";
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import { Fragment, useEffect, useState } from "react";
+import ImageDetailModal from "../common/ImageDetailModal";
 import MappedImage from "../Home/HomePartials/MappedImage";
 
 const LikesComponent = () => {
-  const [columns, setColumns] = useState(1);
+  const [columns, setColumns] = useState(4);
   const [likes, setLikes] = useState([]);
+  const { showDetail } = useCommonFunctions();
 
   useEffect(() => {
     const localLikes = JSON.parse(localStorage.getItem("likes")!);
@@ -25,7 +28,7 @@ const LikesComponent = () => {
             <input
               className="w-48 md:w-56 cursor-pointer duration-150 hover:opacity-80"
               type="range"
-              min={1}
+              min={2}
               max={4}
               value={columns}
               onChange={(e) => setColumns(+e.target.value)}
@@ -51,12 +54,13 @@ const LikesComponent = () => {
             {likes.length > 0 &&
               likes.map((like: LexicaImgProps) => (
                 <Fragment key={like.id}>
-                  <MappedImage item={like} />
+                  <MappedImage item={like} remove={true} />
                 </Fragment>
               ))}
           </section>
         </div>
       </div>
+      {showDetail.isVisible && <ImageDetailModal />}
     </section>
   );
 };

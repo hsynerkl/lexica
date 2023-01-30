@@ -131,7 +131,7 @@ const Searchbar: FC = () => {
         <input
           className="w-48 md:w-96 hidden md:flex cursor-pointer duration-150 hover:opacity-80"
           type="range"
-          min={1}
+          min={4}
           max={12}
           value={columnsWeb}
           onChange={(e) => handleSetWebColumns(e.target.value)}

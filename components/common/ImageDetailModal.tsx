@@ -16,7 +16,7 @@ const ImageDetailModal: FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] sm:px-16 px-1 py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80 "
+      className="fixed inset-0 z-[9999] text-white sm:px-16 px-1 py-8 flex justify-center sm:z-50 bg-zinc-900 bg-opacity-80 "
       onClick={handleCloseShowDetail}
     >
       <div

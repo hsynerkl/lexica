@@ -5,14 +5,19 @@ import { FC } from "react";
 
 type MappedImageProps = {
   item: LexicaImgProps;
+  remove?: boolean;
 };
 
-const MappedImage: FC<MappedImageProps> = ({ item }) => {
-  const { handleSetShowDetail, handleSearchWithIcon, handleAddLikes } =
-    useCommonFunctions();
+const MappedImage: FC<MappedImageProps> = ({ item, remove }) => {
+  const {
+    handleSetShowDetail,
+    handleSearchWithIcon,
+    handleAddLikes,
+    handleRemoveLikes,
+  } = useCommonFunctions();
   return (
     <div
-      className="aspect-h-1 aspect-w-1 group relative overflow-hidden"
+      className={`aspect-h-1 aspect-w-1 group relative overflow-hidden `}
       onClick={() => handleSetShowDetail(item)}
     >
       <Image
@@ -48,7 +53,11 @@ const MappedImage: FC<MappedImageProps> = ({ item }) => {
             className="p-2 h-fit hover:bg-black-100 hover:bg-opacity-30 bg-black-50 hover:backdrop-blur rounded-lg"
             onClick={(e) => {
               e.stopPropagation();
-              handleAddLikes(item);
+              if (remove) {
+                handleRemoveLikes(item);
+              } else {
+                handleAddLikes(item);
+              }
             }}
           >
             <svg
