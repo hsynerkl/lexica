@@ -10,6 +10,7 @@ type ImageContainerType = {
   imgs: LexicaImgProps[];
   device: string;
   searched: boolean;
+  handleAddLikes: (like: LexicaImgProps) => void;
 };
 
 const ImageContainer: FC<ImageContainerType> = ({
@@ -20,6 +21,7 @@ const ImageContainer: FC<ImageContainerType> = ({
   imgs,
   device,
   searched,
+  handleAddLikes,
 }) => {
   return (
     <section
@@ -36,6 +38,7 @@ const ImageContainer: FC<ImageContainerType> = ({
                 item={item}
                 handleSetShowDetail={handleSetShowDetail}
                 handleSearchWithIcon={handleSearchWithIcon}
+                handleAddLikes={handleAddLikes}
               />
             </Fragment>
           ))
@@ -51,6 +54,7 @@ const ImageContainer: FC<ImageContainerType> = ({
               item={item}
               handleSetShowDetail={handleSetShowDetail}
               handleSearchWithIcon={handleSearchWithIcon}
+              handleAddLikes={handleAddLikes}
             />
           </Fragment>
         ))

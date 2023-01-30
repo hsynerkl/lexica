@@ -6,12 +6,14 @@ type MappedImageProps = {
   item: LexicaImgProps;
   handleSetShowDetail: (item: LexicaImgProps) => void;
   handleSearchWithIcon: (text: string) => void;
+  handleAddLikes: (like: LexicaImgProps) => void;
 };
 
 const MappedImage: FC<MappedImageProps> = ({
   item,
   handleSetShowDetail,
   handleSearchWithIcon,
+  handleAddLikes,
 }) => {
   return (
     <div
@@ -47,7 +49,13 @@ const MappedImage: FC<MappedImageProps> = ({
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </div>
-          <div className="p-2 h-fit hover:bg-black-100 hover:bg-opacity-30 bg-black-50 hover:backdrop-blur rounded-lg ">
+          <div
+            className="p-2 h-fit hover:bg-black-100 hover:bg-opacity-30 bg-black-50 hover:backdrop-blur rounded-lg"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddLikes(item);
+            }}
+          >
             <svg
               stroke="white"
               fill="none"

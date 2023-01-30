@@ -8,7 +8,7 @@ const Navbar = () => {
   const { handleShowHidemModal } = useAuth();
 
   return (
-    <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-50">
+    <nav className="h-14 flex justify-start md:justify-between bg-black-50 items-center bg-opacity-80 md:px-4 z-50 fixed bottom-0 md:top-0 w-screen backdrop-blur border-b border-b-zinc-700 border-opacity-80">
       <Link href="" rel="home" className="cursor-pointer">
         <svg
           viewBox="0 0 112 32"
@@ -23,9 +23,9 @@ const Navbar = () => {
         </svg>
       </Link>
 
-      <ul className="[&>li]:text-white gap-2 [&>li]:pt-1.5 md:flex hidden ">
+      <ul className="[&>li]:text-white [&>li]:pt-1 md:flex hidden ">
         <li
-          className={`h-14 flex group items-center border-b-[2px] border-b-transparent text-sm cursor-pointer  ${
+          className={`h-14 flex group items-center border-b-[2px] border-b-transparent text-sm cursor-pointer ${
             router.pathname === "/"
               ? "!border-b-purple-50"
               : router.pathname === "/home"

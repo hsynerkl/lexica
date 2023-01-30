@@ -9,9 +9,11 @@ const AccountComponent = () => {
   };
 
   return (
-    <section className="md:pt-24 pt-10 h-screen overflow-y-auto">
+    <section className="md:pt-24 pt-10 sm:pb-16 h-screen overflow-y-auto">
       <div className="container max-w-6xl px-5 mb-32 sm:mb-0 text-zinc-200 mx-auto flex items-center flex-col">
-        <h1 className="text-center text-4xl md:text-6xl ">Memberships</h1>
+        <h1 className="text-center text-4xl md:text-6xl logo-font">
+          Memberships
+        </h1>
         <h2 className="text-center mt-3">Choose a plan that works for you.</h2>
 
         <div className="relative bg-black-50 rounded-lg w-fit mt-12 flex p-1.5">

@@ -32,6 +32,12 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
     });
   };
 
+  const handleAddLikes = async (like: LexicaImgProps) => {
+    const localLikes = await JSON.parse(localStorage.getItem("likes")!);
+    await localLikes.push(like);
+    localStorage.setItem("likes", JSON.stringify(localLikes));
+  };
+
   const handleSetShowDetail = (item: LexicaImgProps) => {
     setShowDetail({
       isVisible: true,
@@ -128,6 +134,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         imgs={imgs}
         device={"web"}
         searched={searched}
+        handleAddLikes={handleAddLikes}
       />
 
       <ImageContainer
@@ -138,6 +145,7 @@ const HomeComponent: FC<HomeComponentProps> = ({ limit, imgs }) => {
         imgs={imgs}
         device={"mobile"}
         searched={searched}
+        handleAddLikes={handleAddLikes}
       />
 
       {showDetail.isVisible && (
