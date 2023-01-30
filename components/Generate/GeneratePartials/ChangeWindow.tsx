@@ -16,7 +16,7 @@ const ChangeWindow: FC<ChangeWindowProps> = ({
   windowValue,
 }) => {
   return (
-    <div className="md:col-span-3 xl:col-span-2 border border-zinc-700 rounded-lg px-5 py-4 pb-6 shadow-md h-fit flex flex-col relative">
+    <div className="md:col-span-3 order-1 md:order-2 xl:col-span-2 border border-zinc-700 rounded-lg px-5 py-4 pb-6 shadow-md h-fit flex flex-col relative">
       <div className="flex gap-2 items-center">
         <svg
           stroke="currentColor"
@@ -59,7 +59,7 @@ const ChangeWindow: FC<ChangeWindowProps> = ({
         </svg>
 
         <p
-          className={`text-sm text-white ${
+          className={`text-sm duration-150 text-white ${
             !windowVisible === false && "text-opacity-0"
           }`}
         >
@@ -80,21 +80,24 @@ const ChangeWindow: FC<ChangeWindowProps> = ({
           <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12V2z"></path>
         </svg>
       </div>
-      {windowVisible && (
-        <div className="relative flex justify-center rounded-md">
-          <div
-            className="absolute translate-all duration-150 -top-4 py-2 px-2 border border-white border-opacity-60 bg-black-50 flex justify-center items-center text-white"
-            style={{
-              width: windowValue.width,
-              height: windowValue.height,
-            }}
-          >
-            <p className="text-xs text-opacity-70">
-              {windowValue.textW} x {windowValue.textH}
-            </p>
-          </div>
+
+      <div
+        className={`${
+          windowVisible ? "visible" : "invisible"
+        } relative flex justify-center rounded-md`}
+      >
+        <div
+          className="absolute translate-all duration-150 -top-4 py-2 px-2 border border-white border-opacity-60 bg-black-50 flex justify-center items-center text-white"
+          style={{
+            width: windowValue.width,
+            height: windowValue.height,
+          }}
+        >
+          <p className="text-xs text-opacity-70">
+            {windowValue.textW} x {windowValue.textH}
+          </p>
         </div>
-      )}
+      </div>
     </div>
   );
 };

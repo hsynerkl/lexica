@@ -12,12 +12,12 @@ const LikesComponent = () => {
   }, []);
 
   return (
-    <section className="md:pt-24 pt-10 sm:pb-16 h-screen overflow-y-auto">
+    <section className="md:pt-24 pt-10 sm:pb-16 h-screen overflow-y-auto overflow-x-hidden">
       <div className="container max-w-6xl px-5 mb-32 sm:mb-0 text-zinc-200 mx-auto flex items-center flex-col">
         <h1 className="text-center text-4xl md:text-6xl logo-font mt-4 mb-12">
           Likes
         </h1>
-        <div className="mb-14 flex-col gap-5 justify-center md:flex hidden">
+        <div className="mb-14 flex-col gap-5 justify-center">
           <p className="text-sm text-gray-50 text-center opacity-50">
             Columns: {columns}
           </p>
@@ -26,7 +26,7 @@ const LikesComponent = () => {
               className="w-48 md:w-56 cursor-pointer duration-150 hover:opacity-80"
               type="range"
               min={1}
-              max={12}
+              max={4}
               value={columns}
               onChange={(e) => setColumns(+e.target.value)}
             />
@@ -42,17 +42,19 @@ const LikesComponent = () => {
             </p>
           )}
 
-          {likes.length > 0 &&
-            likes.map((like: LexicaImgProps) => (
-              <Fragment key={like.id}>
-                {/* <MappedImage
-              item={like}
-              handleSetShowDetail={handleSetShowDetail}
-              handleSearchWithIcon={handleSearchWithIcon}
-              handleAddLikes={handleAddLikes}
-            /> */}
-              </Fragment>
-            ))}
+          <section
+            className="gap-2 sm:gap-1 px-2 w-screen grid mt-4"
+            style={{
+              gridTemplateColumns: `repeat(${columns},minmax(0,1fr))`,
+            }}
+          >
+            {likes.length > 0 &&
+              likes.map((like: LexicaImgProps) => (
+                <Fragment key={like.id}>
+                  <MappedImage item={like} />
+                </Fragment>
+              ))}
+          </section>
         </div>
       </div>
     </section>

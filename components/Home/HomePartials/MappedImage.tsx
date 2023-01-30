@@ -1,20 +1,15 @@
+import { useCommonFunctions } from "@/context/CommonFunctions";
 import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
 import { FC } from "react";
 
 type MappedImageProps = {
   item: LexicaImgProps;
-  handleSetShowDetail: (item: LexicaImgProps) => void;
-  handleSearchWithIcon: (text: string) => void;
-  handleAddLikes: (like: LexicaImgProps) => void;
 };
 
-const MappedImage: FC<MappedImageProps> = ({
-  item,
-  handleSetShowDetail,
-  handleSearchWithIcon,
-  handleAddLikes,
-}) => {
+const MappedImage: FC<MappedImageProps> = ({ item }) => {
+  const { handleSetShowDetail, handleSearchWithIcon, handleAddLikes } =
+    useCommonFunctions();
   return (
     <div
       className="aspect-h-1 aspect-w-1 group relative overflow-hidden"
@@ -27,7 +22,7 @@ const MappedImage: FC<MappedImageProps> = ({
         fill={true}
         loading="eager"
       />
-      <div className="inset-0 z-50 gap-2 p-[2px] sm:p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
+      <div className="inset-0 z-10 gap-2 p-[2px] sm:p-2 absolute cursor-pointer invisible text-white flex flex-col group-hover:visible bg-black-50">
         <div className="flex justify-between">
           <div
             className="p-2 h-fit hover:bg-black-100 bg-black-50 hover:bg-opacity-30 hover:backdrop-blur rounded-lg"

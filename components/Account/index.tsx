@@ -281,8 +281,10 @@ const AccountComponent = () => {
             <p className="mb-2">Where can I ask more questions?</p>
             <p className="text-zinc-400">
               Please join our{" "}
-              <span className="underline">Discord community.</span> We&apos;re
-              usually online and happy to answer any questions.
+              <span className="underline cursor-pointer">
+                Discord community.
+              </span>{" "}
+              We&apos;re usually online and happy to answer any questions.
             </p>
           </div>
         </div>

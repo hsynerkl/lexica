@@ -1,8 +1,8 @@
-import { useAuth } from "@/context/Auth";
+import { useCommonFunctions } from "@/context/CommonFunctions";
 import CustomButton from "./CustomButton";
 
 const LoginModal = () => {
-  const { handleShowHidemModal } = useAuth();
+  const { handleShowHidemModal } = useCommonFunctions();
   return (
     <div
       className="fixed inset-0 bg-zinc-900 bg-opacity-40 flex justify-center items-center h-screen w-screen text-white z-40"

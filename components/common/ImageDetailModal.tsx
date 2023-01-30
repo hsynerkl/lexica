@@ -1,20 +1,11 @@
 import useClipboard from "react-use-clipboard";
-import { LexicaImgProps } from "@/types/Lexicaimg";
 import Image from "next/image";
 import { FC } from "react";
+import { useCommonFunctions } from "@/context/CommonFunctions";
 
-type ImageDetailModalProps = {
-  showDetail: {
-    isVisible: boolean;
-    data: LexicaImgProps;
-  };
-  handleCloseShowDetail: () => void;
-};
+const ImageDetailModal: FC = () => {
+  const { showDetail, handleCloseShowDetail } = useCommonFunctions();
 
-const ImageDetailModal: FC<ImageDetailModalProps> = ({
-  showDetail,
-  handleCloseShowDetail,
-}) => {
   const [copyPrompt, setCopyPrompt] = useClipboard(showDetail.data.prompt, {
     successDuration: 1000,
   });

@@ -2,7 +2,7 @@ import CustomButton from "../../common/CustomButton";
 
 const CreateImage = () => {
   return (
-    <div className="md:col-span-5 xl:col-span-6">
+    <div className="md:col-span-5 xl:col-span-6 order-2 md:order-1 md:pb-0 pb-24">
       <p className="text-xs opacity-50 pb-1 pl-2">Describe your image</p>
       <textarea
         placeholder="A steampunk teddy bear vending machine"

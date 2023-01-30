@@ -120,8 +120,8 @@ const GenerateComponent = () => {
   }, []);
 
   return (
-    <section className="flex justify-center md:pb-20 md:pt-20 pt-4 pb-48 text-white bg-black-200 ">
-      <div className="container px-4 pt-4 gap-10 grid md:grid-cols-8 ">
+    <section className="flex justify-center md:pt-20 pt-4 text-white bg-black-200 h-screen overflow-y-auto">
+      <div className="container px-4 pt-4 gap-10 grid md:grid-cols-8">
         <CreateImage />
         <ChangeWindow
           divRef={divRef}
