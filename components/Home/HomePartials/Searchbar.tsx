@@ -125,12 +125,11 @@ const Searchbar: FC<SearchbarProps> = ({
           onClick={handleSearch}
         />
       ) : (
-        <div className="w-fit py-2 text-white items-center flex hover:brightness-110 px-6 mt-3 mb-3 rounded-full text-xs md:text-sm bg-gradient-to-t from-indigo-800 via-indigo-800 to-indigo-600 drop-shadow font-medium cursor-pointer">
+        <div className="w-32 py-2 text-white items-center justify-center flex hover:brightness-110 px-6 mt-3 mb-3 rounded-full text-xs md:text-sm bg-gradient-to-t from-indigo-800 via-indigo-800 to-indigo-600 drop-shadow font-medium cursor-pointer">
           <svg
-            className="animate-spin border-dotted border-white border-2 rounded-full h-4 w-4 mr-4"
+            className="animate-spin border-dotted border-white border-2 rounded-full h-4 w-4"
             viewBox="0 0 24 24"
           ></svg>
-          <p className="ml-2">loading</p>
         </div>
       )}
 
